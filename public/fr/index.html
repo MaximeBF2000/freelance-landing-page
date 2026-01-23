@@ -1,242 +1,281 @@
 <!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PME, j'automatise vos process avec l'IA</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=Krona+One&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../styles.css" />
-  </head>
-  <body>
-    <div class="page">
-      <header class="hero">
-        <div class="container">
-          <nav class="nav">
-            <div class="brand">
-              <span class="brand-dot"></span>
-              Maxime Ferret
-            </div>
-            <div class="nav-links">
-              <a href="#services">Services</a>
-              <a href="#projects">Projets</a>
-              <a href="#contact">Contact</a>
-            </div>
-            <div class="nav-actions">
-              <div class="lang-toggle">
-                <a class="lang" href="../en/index.html">EN 🇺🇸</a>
-                <span class="lang-separator">/</span>
-                <a class="lang active" href="../fr/index.html">FR 🇫🇷</a>
-              </div>
-              <a class="cta ghost" href="https://calendly.com/maximeferret/echange-maxime-ferret" target="_blank">Calendly</a>
-            </div>
-          </nav>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxime Ferret | Expert Automatisation & IA</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #fbfcfd;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+        .reveal { opacity: 0; transform: translateY(30px); }
+        
+        /* Glassmorphism & Depth */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-          <div class="hero-card">
-            <div class="hero-stats">
-              <div class="stat">
-                <span class="stat-icon">
-                  <img src="../assets/github.svg" alt="Github" />
-                </span>
-                <a href="https://github.com/MaximeBF2000" target="_blank">+150 projets Github</a>
-              </div>
-              <div class="stat">
-                <span class="stat-icon">★</span>
-                <span>7 ans d'exp</span>
-              </div>
-            </div>
+        /* Deep Hero Background */
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1000px;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, #edf2ff 0%, #fbfcfd 70%);
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        .dot-grid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(#3b82f6 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+        }
 
-            <div class="hero-main">
-              <div class="profile">
-                <img
-                  src="../assets/profil-pic.png"
-                  alt="Photo de profil Maxime Ferret"
-                />
-              </div>
-              <div class="hero-copy">
-                <h1>PME, J'automatise vos process avec l'IA</h1>
-                <p class="hero-subtitle">
-                  Développeur senior · Apps, outils internes & automatisations
-                </p>
-                <p class="hero-meta">
-                  Orienté produit · Code / No-Code · Natif IA
-                </p>
-                <div class="hero-actions">
-                  <a class="cta" href="https://calendly.com/maximeferret/echange-maxime-ferret" target="_blank">
-                    Prendre un rendez-vous
-                  </a>
-                  <a class="cta ghost" href="#projects">Voir des projets</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+        .bento-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: #3B82F6;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body>
 
-      <main>
-        <section class="section about reveal" id="about">
-          <div class="section-title">
-            <span>About</span>
-            <h2>Moins de friction, plus de décisions claires</h2>
-          </div>
-          <div class="about-grid">
-            <div class="about-text">
-              <p>
-                Pour 90 % des PME, les outils internes et les process finissent par
-                ralentir plus qu'ils n'aident. Trop de taches manuelles, des outils
-                bricolés, et des idées d'automatisation qui restent au stade de
-                discussion.
-              </p>
-              <p>
-                J'interviens pour structurer, automatiser et livrer des outils sur
-                mesure rapidement, sans compromis sur la qualité.
-              </p>
-              <p>
-                L'IA n'est pas le produit. C'est un levier d'exécution pour aller plus
-                vite, plus loin, et plus proprement.
-              </p>
-            </div>
-            <div class="about-list">
-              <h3>Concretement, j'interviens sur</h3>
-              <ul>
-                <li>Applications web sur mesure</li>
-                <li>Outils internes adaptés aux besoins métiers</li>
-                <li>Automatisation de process existants en code / no-code</li>
-                <li>Intégration de briques IA dans des apps existantes</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="section services reveal" id="services">
-          <div class="section-title">
-            <span>Services</span>
-            <h2>Une offre compacte, orientée impact</h2>
-          </div>
-          <div class="service-grid">
-            <article>
-              <h3>Audit express</h3>
-              <p>
-                1 a 2 sessions pour cartographier les tâches répétitives et définir
-                les automatismes prioritaires.
-              </p>
-            </article>
-            <article>
-              <h3>Build sur mesure</h3>
-              <p>
-                Prototype rapide, puis production d'un outil propre et scalable, livré
-                en semaines, pas en mois.
-              </p>
-            </article>
-            <article>
-              <h3>Automatisation IA</h3>
-              <p>
-                GPT, RPA, workflows internes : j'assemble les briques IA utiles à vos
-                équipes, sans surcouche inutile.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section projects reveal" id="projects">
-          <div class="section-title">
-            <span>Projects</span>
-            <h2>Exemples d'outils livrés</h2>
-          </div>
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-header">
-                <h3>Assistant support IA</h3>
-                <span class="tag">SaaS B2B</span>
-              </div>
-              <p>
-                Base de connaissance intelligente, réponses automatiques et tableau
-                de bord pour le support interne.
-              </p>
-              <a href="https://calendly.com/maximeferret/echange-maxime-ferret" class="project-link" target="_blank">
-                Voir le résultat
-              </a>
-            </article>
-            <article class="project-card">
-              <div class="project-header">
-                <h3>Process logistique</h3>
-                <span class="tag">Industrie</span>
-              </div>
-              <p>
-                Automatisation des validations, réduction de 40 % des retards et
-                reporting en temps réel.
-              </p>
-              <a href="https://calendly.com/maximeferret/echange-maxime-ferret" class="project-link" target="_blank">
-                Voir le résultat
-              </a>
-            </article>
-            <article class="project-card">
-              <div class="project-header">
-                <h3>CRM sur mesure</h3>
-                <span class="tag">Services</span>
-              </div>
-              <p>
-                Pipeline complet, automatisations d'emails, relances et intégration
-                d'IA pour la qualification des leads.
-              </p>
-              <a href="https://calendly.com/maximeferret/echange-maxime-ferret" class="project-link" target="_blank">
-                Voir le résultat
-              </a>
-            </article>
-          </div>
-        </section>
-
-        <section class="section process reveal" id="process">
-          <div class="section-title">
-            <span>Process</span>
-            <h2>Une approche courte et claire</h2>
-          </div>
-          <div class="process-steps">
-            <div class="step">
-              <span>01</span>
-              <h3>Qualification</h3>
-              <p>On identifie le process à fort ROI et le niveau d'automatisation.</p>
-            </div>
-            <div class="step">
-              <span>02</span>
-              <h3>Prototype</h3>
-              <p>Livraison rapide d'un MVP, testé en conditions réelles.</p>
-            </div>
-            <div class="step">
-              <span>03</span>
-              <h3>Industrialisation</h3>
-              <p>Documentation, sécurité et monitoring pour passer à l'échelle.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section contact reveal" id="contact">
-          <div class="contact-card">
-            <div>
-              <h2>Vous avez un process à automatiser ?</h2>
-              <p>
-                On en parle en 20 minutes. Vous repartez avec un plan clair et une
-                estimation réaliste.
-              </p>
-            </div>
-            <a class="cta" href="https://calendly.com/maximeferret/echange-maxime-ferret" target="_blank">
-              Prendre un rendez-vous
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <footer class="footer">
-        <div class="container footer-inner">
-          <span>Maxime Ferret</span>
-          <span>Automatisation & outils internes 2026</span>
-        </div>
-      </footer>
+    <div class="hero-bg-container">
+        <div class="dot-grid"></div>
+        <div class="blob w-[600px] h-[600px] bg-blue-200 -top-48 -left-24 animate-pulse"></div>
+        <div class="blob w-[500px] h-[500px] bg-indigo-100 top-0 -right-24 animate-bounce" style="animation-duration: 10s;"></div>
     </div>
-    <script src="../script.js"></script>
-  </body>
+
+    <nav class="glass-nav sticky top-0 z-50 w-full">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-2 font-black text-xl tracking-tighter">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm shadow-lg shadow-blue-200">M</div>
+                <span>MAXIME FERRET</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold text-slate-500">
+                <a href="#services" class="hover:text-blue-600 transition-colors">Services</a>
+                <a href="#process" class="hover:text-blue-600 transition-colors">Méthode</a>
+                <a href="#projects" class="hover:text-blue-600 transition-colors">Cas concrets</a>
+            </div>
+            <div class="flex items-center gap-5">
+                <div class="flex items-center gap-2 text-[10px] font-black bg-white p-1.5 rounded-full border border-slate-200 shadow-sm">
+                    <a href="../en/index.html" class="cursor-pointer opacity-40 hover:opacity-100 transition-opacity">🇺🇸 EN</a>
+                    <span class="w-px h-3 bg-slate-200"></span>
+                    <a href="../fr/index.html" class="cursor-pointer text-blue-600">🇫🇷 FR</a>
+                </div>
+                <a href="https://calendly.com/maximeferret/echange-maxime-ferret" 
+                    target="_blank"
+                   class="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-100">
+                    Réserver un appel
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative pt-24 pb-12 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-white/50 text-blue-700 text-[11px] font-black mb-8 tracking-widest shadow-sm">
+                <span class="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
+                DISPONIBILITÉ : FÉVRIER 2026
+            </div>
+            
+            <h1 class="reveal text-5xl md:text-8xl font-[900] tracking-tight mb-8 text-slate-900 leading-[1.05]">
+                PME : Gagnez <span class="text-blue-600">20h par semaine</span>.
+            </h1>
+            
+            <p class="reveal text-lg md:text-2xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
+                Développeur logiciel, j'automatise vos processus chronophages pour transformer vos tâches manuelles en <span class="text-slate-900 font-bold">systèmes autonomes pilotés par l'IA.</span>
+            </p>
+
+            <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://calendly.com/maximeferret/echange-maxime-ferret" 
+                    target="_blank"
+                   class="w-full sm:w-auto flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-800 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-2xl shadow-slate-300 transform active:scale-95">
+                    Lancer l'audit <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                </a>
+                <a href="https://github.com/MaximeBF2000" 
+                    target="_blank"
+                   class="w-full sm:w-auto flex items-center justify-center gap-3 bg-white border border-slate-200 px-10 py-5 rounded-2xl font-bold text-slate-700 hover:bg-slate-50 transition-all shadow-sm">
+                    <i data-lucide="github" class="w-6 h-6"></i> +150 projets Github
+                </a>
+            </div>
+
+            <div class="reveal mt-20 flex justify-center">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-blue-500 blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                    <img src="../assets/profil-pic.png" 
+                         alt="Maxime Ferret" 
+                         class="relative w-40 h-40 rounded-[2.5rem] border-8 border-white object-cover shadow-2xl -rotate-2 group-hover:rotate-0 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="pt-32 pb-12 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="reveal md:col-span-2 bento-card p-10 md:p-16 rounded-[3.5rem] flex flex-col justify-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                <h2 class="text-4xl font-[900] mb-8 text-slate-900 tracking-tight leading-tight">Moins de friction, plus de décisions claires.</h2>
+                <p class="text-slate-600 text-xl leading-relaxed max-w-xl font-medium relative z-10">
+                    Pour 90% des PME, les outils et process internes deviennent un frein. J'interviens pour <span class="text-blue-600 font-bold">structurer et automatiser vos flux</span>. Voyez les changements dès les premiers jours.
+                </p>
+            </div>
+            <div class="reveal bg-blue-600 p-10 md:p-14 rounded-[3.5rem] text-white shadow-2xl shadow-blue-200 bento-card border-none">
+                <h3 class="text-xl font-black mb-10 flex items-center gap-3 uppercase tracking-widest text-blue-100">
+                    <i data-lucide="shield-check"></i> Expertise
+                </h3>
+                <ul class="space-y-6 text-base font-bold">
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-6 h-6 p-1 bg-white/20 rounded-full"></i> Apps web sur mesure</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-6 h-6 p-1 bg-white/20 rounded-full"></i> Outils métiers internes</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-6 h-6 p-1 bg-white/20 rounded-full"></i> Hybride Code / No-Code</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-6 h-6 p-1 bg-white/20 rounded-full"></i> Agents IA & RAG</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="reveal text-center mb-20">
+            <h2 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-4">Process</h2>
+            <p class="text-5xl font-[900] tracking-tight text-slate-900">Impact immédiat.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="reveal bento-card p-12 rounded-[3rem]">
+                <div class="mb-10 p-5 bg-amber-50 text-amber-600 w-fit rounded-[1.5rem] shadow-sm"><i data-lucide="search" class="w-8 h-8"></i></div>
+                <h4 class="text-2xl font-black mb-4 tracking-tight">1. Audit Express</h4>
+                <p class="text-slate-500 text-lg leading-relaxed font-medium italic">Cartographie complète de vos processus pour isoler les gains de productivité à fort ROI.</p>
+            </div>
+
+            <div class="reveal bento-card p-12 rounded-[3rem]">
+                <div class="mb-10 p-5 bg-blue-50 text-blue-600 w-fit rounded-[1.5rem] shadow-sm"><i data-lucide="layers" class="w-8 h-8"></i></div>
+                <h4 class="text-2xl font-black mb-4 tracking-tight">2. Build sur mesure</h4>
+                <p class="text-slate-500 text-lg leading-relaxed font-medium italic">Développement d'outils propriétaires robustes en quelques jours.</p>
+            </div>
+
+            <div class="reveal bento-card p-12 rounded-[3rem]">
+                <div class="mb-10 p-5 bg-orange-50 text-orange-600 w-fit rounded-[1.5rem] shadow-sm"><i data-lucide="rocket" class="w-8 h-8"></i></div>
+                <h4 class="text-2xl font-black mb-4 tracking-tight">3. Mise en place</h4>
+                <p class="text-slate-500 text-lg leading-relaxed font-medium italic">Accompagnement sur la mise en place, formation interne à l'outil et support continu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 bg-slate-50/50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="reveal text-center mb-20">
+                <h2 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-4">Portfolio</h2>
+                <p class="text-5xl font-[900] tracking-tight text-slate-900">Exemples concrets</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal bento-card p-12 rounded-[3.5rem] group">
+                    <span class="text-[10px] font-black bg-blue-100 text-blue-700 px-3 py-1 rounded-full uppercase mb-8 inline-block tracking-widest">Support</span>
+                    <h4 class="text-2xl font-black mb-4">Assistant support IA</h4>
+                    <p class="text-slate-500 text-base leading-relaxed font-medium italic">Base de connaissance intelligente, réponses automatiques sourcées et tableau de bord pour le support interne ou client.</p>
+                </div>
+
+                <div class="reveal bento-card p-12 rounded-[3.5rem] group">
+                    <span class="text-[10px] font-black bg-green-100 text-green-700 px-3 py-1 rounded-full uppercase mb-8 inline-block tracking-widest">Administratif</span>
+                    <h4 class="text-2xl font-black mb-4">Back-office simplifié</h4>
+                    <p class="text-slate-500 text-base leading-relaxed font-medium italic">Génération automatique de documents, synchronisation de données inter-outils et élimination des ressaisies manuelles.</p>
+                </div>
+
+                <div class="reveal bento-card p-12 rounded-[3.5rem] group">
+                    <span class="text-[10px] font-black bg-purple-100 text-purple-700 px-3 py-1 rounded-full uppercase mb-8 inline-block tracking-widest">Prospection</span>
+                    <h4 class="text-2xl font-black mb-4">CRM sur mesure</h4>
+                    <p class="text-slate-500 text-base leading-relaxed font-medium italic">Pipeline complet, extractions de données, automatisations d'emails et intégration d'IA pour la qualification des prospects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="reveal bg-slate-900 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden shadow-3xl">
+            <div class="absolute inset-0 bg-blue-600/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-7xl font-black text-white mb-10 tracking-tighter">
+                    On libère votre temps ?
+                </h2>
+                <p class="text-slate-400 mb-14 text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+                    Un appel de 20 minutes pour chiffrer votre gain potentiel. Gratuit et sans engagement.
+                </p>
+                <a href="https://calendly.com/maximeferret/echange-maxime-ferret" 
+                   target="_blank"
+                   class="inline-flex items-center gap-4 bg-blue-600 text-white px-12 py-7 rounded-[2rem] font-black text-xl hover:bg-blue-500 transition-all shadow-2xl shadow-blue-900/40 transform hover:scale-105 active:scale-95">
+                    Réserver mon créneau <i data-lucide="calendar" class="w-8 h-8"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center">
+        <p class="text-slate-400 text-[10px] font-black tracking-[0.4em] uppercase">
+            © 2026 MAXIME FERRET — AUTOMATISATION PME
+        </p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // General reveal staggered
+        const sections = document.querySelectorAll('section, .grid');
+        sections.forEach(section => {
+            const reveals = section.querySelectorAll('.reveal');
+            if(reveals.length > 0) {
+                gsap.to(reveals, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 65%", // Déclenchement plus tôt
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power4.out",
+                    stagger: 0.20 // Les éléments apparaissent les uns après les autres
+                });
+            }
+        });
+
+        // Specific hover logic for deep shadow cards
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, { scale: 1.02, duration: 0.4, ease: "power2.out" });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { scale: 1, duration: 0.4, ease: "power2.out" });
+            });
+        });
+    </script>
+</body>
 </html>
