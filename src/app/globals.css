@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #fbfcfd;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1000px;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, #edf2ff 0%, #fbfcfd 70%);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#3b82f6 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.05;
+}
+
+.bento-card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: #3b82f6;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+}
