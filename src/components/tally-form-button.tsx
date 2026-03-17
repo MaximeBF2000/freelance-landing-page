@@ -50,6 +50,18 @@ export const TallyFormButton = ({ locale }: TallyFormButtonProps) => {
     let emailValue = sanitizeValueForPostRequest(email)
     let messageValue = sanitizeValueForPostRequest(message)
 
+    const payload = JSON.stringify({
+      sessionUuid: crypto.randomUUID(),
+      respondentUuid: respondentUuid,
+      responses: {
+        '3bc28504-5423-4901-8fa3-39dba7ad770c': emailValue,
+        'b91e8ce7-3717-4ba7-9a9f-1b7fec3259ee': messageValue
+      },
+      captchas: {},
+      isCompleted: true,
+      password: null
+    })
+
     fetch('https://api.tally.so/forms/Gx0Loo/respond', {
       headers: {
         accept: 'application/json, text/plain, */*',
@@ -67,17 +79,7 @@ export const TallyFormButton = ({ locale }: TallyFormButtonProps) => {
         'tally-version': '2025-01-15'
       },
       referrer: 'https://tally.so/',
-      body: `{
-        "sessionUuid":"${crypto.randomUUID()}",
-        "respondentUuid":"${respondentUuid}",
-        "responses": {
-          "3bc28504-5423-4901-8fa3-39dba7ad770c": "${emailValue}",
-          "b91e8ce7-3717-4ba7-9a9f-1b7fec3259ee": "${messageValue}"
-        },
-        "captchas":{},
-        "isCompleted":true,
-        "password":null
-      }`,
+      body: payload,
       method: 'POST',
       mode: 'cors',
       credentials: 'omit'
