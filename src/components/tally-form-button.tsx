@@ -27,6 +27,8 @@ export const TallyFormButton = ({ locale }: TallyFormButtonProps) => {
     'idle'
   )
 
+  const deviceWidth = typeof window !== 'undefined' ? window.innerWidth : 0
+
   const closeForm = () => {
     setFormOpen(false)
     setTimeout(() => {
@@ -189,7 +191,7 @@ export const TallyFormButton = ({ locale }: TallyFormButtonProps) => {
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 className="min-h-28 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-[15px] font-medium text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-blue-200"
-                rows={10}
+                rows={deviceWidth > 600 ? 10 : 5}
                 required
               />
             </div>
