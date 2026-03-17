@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, SubmitEvent } from 'react'
-import { CheckCircle2, MessageCircleMore, Send, X } from 'lucide-react'
+import { CheckCircle2, MessageCircleMore, Send, X, XIcon } from 'lucide-react'
 import { getTranslator, type Locale } from '@/lib/i18n'
 
 function sanitizeValueForPostRequest(value: any) {
@@ -219,9 +219,12 @@ export const TallyFormButton = ({ locale }: TallyFormButtonProps) => {
             : 'Ouvrir le formulaire de contact'
         })}
       >
-        <MessageCircleMore
-          className={`h-6 w-6 transition-transform duration-300`}
-        />
+        {!formOpen && (
+          <MessageCircleMore className="h-6 w-6 transition-transform duration-300" />
+        )}
+        {formOpen && (
+          <XIcon className="h-6 w-6 transition-transform duration-300" />
+        )}
       </button>
     </div>
   )
