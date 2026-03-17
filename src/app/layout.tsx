@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Inter } from 'next/font/google'
 import '@/app/globals.css'
 
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         {children}
+        <GoogleAnalytics gaId="G-D9S53W1TNM" />
       </body>
     </html>
   )
